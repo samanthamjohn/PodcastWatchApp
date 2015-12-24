@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import PodcastWatchModels
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let dataHandler = PodcastDataHandler()
+        let podcasts = dataHandler.podcasts
+        print(podcasts)
     }
 
 }

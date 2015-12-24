@@ -21,6 +21,7 @@
 		472CDF4C1C2C8A9D001E0609 /* PodcastWatchModels.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 472CDF441C2C8A9D001E0609 /* PodcastWatchModels.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		472CDF521C2C8AB6001E0609 /* PodcastDataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472CDF511C2C8AB6001E0609 /* PodcastDataHandler.swift */; };
 		472CDF531C2C8B04001E0609 /* PodcastWatchModels.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 472CDF441C2C8A9D001E0609 /* PodcastWatchModels.framework */; };
+		47DF5C751C2C8DA00082026C /* Podcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47DF5C741C2C8DA00082026C /* Podcast.swift */; };
 		B28C8A80D3675D789C0FD231 /* libPods-PodcastWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -85,6 +86,7 @@
 		472CDF461C2C8A9D001E0609 /* PodcastWatchModels.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PodcastWatchModels.h; sourceTree = "<group>"; };
 		472CDF481C2C8A9D001E0609 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		472CDF511C2C8AB6001E0609 /* PodcastDataHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastDataHandler.swift; sourceTree = "<group>"; };
+		47DF5C741C2C8DA00082026C /* Podcast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Podcast.swift; sourceTree = "<group>"; };
 		4B6D4BEA4D608A86406C3521 /* Pods-PodcastWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		FAA3551410D2F219BE166C7F /* Pods-PodcastWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.release.xcconfig"; sourceTree = "<group>"; };
 		FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodcastWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -180,6 +182,7 @@
 				472CDF461C2C8A9D001E0609 /* PodcastWatchModels.h */,
 				472CDF481C2C8A9D001E0609 /* Info.plist */,
 				472CDF511C2C8AB6001E0609 /* PodcastDataHandler.swift */,
+				47DF5C741C2C8DA00082026C /* Podcast.swift */,
 			);
 			path = PodcastWatchModels;
 			sourceTree = "<group>";
@@ -419,6 +422,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				47DF5C751C2C8DA00082026C /* Podcast.swift in Sources */,
 				472CDF521C2C8AB6001E0609 /* PodcastDataHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -678,6 +682,7 @@
 				472CDF381C2C8612001E0609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		472CDF4D1C2C8A9D001E0609 /* Build configuration list for PBXNativeTarget "PodcastWatchModels" */ = {
 			isa = XCConfigurationList;
@@ -686,6 +691,7 @@
 				472CDF4F1C2C8A9D001E0609 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -8,11 +8,45 @@
 
 import UIKit
 
-enum PodcastType {
+enum PodcastType: String {
     case ITunes, Overcast
 }
 
+let defaultsSuiteName = "group.PodcastWatch"
+let podcastsKey = "podcasts"
+let pathKey = "path"
+let typeKey = "type"
+
 public class PodcastDataHandler: NSObject {
+    
+    
+    public lazy var podcasts: [Podcast] = {
+        var podcasts: [Podcast] = []
+        if  let defaults = self.defaults,
+            let podcastData = defaults.objectForKey(podcastsKey) as? [[String: AnyObject]] {
+                
+                print(podcastData)
+                
+                podcastData.forEach { (datum) -> () in
+                    if  let path = datum[pathKey] as? String,
+                        let url = NSURL(string: path),
+                        let typeStr = datum[typeKey] as? String,
+                        let type = PodcastType(rawValue: typeStr)
+                    {
+                        let podcast = Podcast(url: url, type: type)
+                        podcasts.append(podcast)
+                    }
+                    
+                }
+        }
+        
+        return podcasts
+    }()
+    
+    
+    lazy var defaults: NSUserDefaults? =  {
+        return NSUserDefaults(suiteName: defaultsSuiteName)
+    }()
     
     public func syncExtensionItem(input: AnyObject) {
         if let attachments = input.attachments
@@ -30,12 +64,12 @@ public class PodcastDataHandler: NSObject {
         {
             itemProvider.loadItemForTypeIdentifier(type, options: nil) { (coding, error) -> Void in
                 if let url = coding as? NSURL {
-                    self.syncUserDefaults(url, type: "overcast")
+                    self.syncUserDefaults(path: url.absoluteString, type: .Overcast)
                 }
                 
                 if let string = coding as? String {
                     if let url = self.getiTunesPodcastIDFromString(string) {
-                        self.syncUserDefaults(url, type: "iTunes")
+                        self.syncUserDefaults(path: url.absoluteString, type: .ITunes)
                     }
                 }
             }
@@ -43,12 +77,18 @@ public class PodcastDataHandler: NSObject {
         
     }
     
-    func syncUserDefaults(url: NSURL, type: String) {
-        print(url)
-        if let defaults = NSUserDefaults(suiteName: "PodcastWatch"), var podcasts = defaults.objectForKey("podcasts") as? [[String: AnyObject]] {
-            podcasts.append(["url" : url, "type" : type])
-            defaults.setObject(podcasts, forKey: "podcasts")
+    func syncUserDefaults(path path: String, type: PodcastType) {
+        print(path)
+        if let defaults = self.defaults {
+            var podcasts: [[String: String]] = []
+            if let existingPodcasts = defaults.objectForKey(podcastsKey) as? [[String: String]] {
+                podcasts = existingPodcasts
+            }
+
+            podcasts.append([pathKey : path, typeKey : type.rawValue])
+            defaults.setObject(podcasts, forKey: podcastsKey)
             defaults.synchronize()
+
         }
     }
     

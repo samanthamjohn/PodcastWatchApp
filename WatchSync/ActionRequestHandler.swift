@@ -8,7 +8,7 @@
 
 import UIKit
 import MobileCoreServices
-//import PodcastWatchModels
+import PodcastWatchModels
 
 class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 
@@ -18,10 +18,10 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     
         self.extensionContext = context
         
-//        let dataHandler = PodcastWatchModels.PodcastDataHandler()
-//        context.inputItems.forEach { (input) -> () in
-//            dataHandler.syncExtensionItem(input)
-//        }
+        let dataHandler = PodcastDataHandler()
+        context.inputItems.forEach { (input) -> () in
+            dataHandler.syncExtensionItem(input)
+        }
         
     }
 }
