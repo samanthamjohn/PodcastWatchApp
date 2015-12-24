@@ -9,7 +9,7 @@
 import UIKit
 
 public class Podcast: NSObject {
-    let url: NSURL
+    public let url: NSURL
     let type: PodcastType
     
     init(url: NSURL, type: PodcastType) {

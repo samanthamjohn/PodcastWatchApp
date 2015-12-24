@@ -25,8 +25,6 @@ public class PodcastDataHandler: NSObject {
         if  let defaults = self.defaults,
             let podcastData = defaults.objectForKey(podcastsKey) as? [[String: AnyObject]] {
                 
-                print(podcastData)
-                
                 podcastData.forEach { (datum) -> () in
                     if  let path = datum[pathKey] as? String,
                         let url = NSURL(string: path),
