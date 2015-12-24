@@ -23,7 +23,7 @@
                                 <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                 <attributedString key="attributedText">
                                     <fragment>
-                                        <string key="content">Go to overcast or the Podcasts app and tap on share. From the share sheet choose PodcastWatch to save a podcast or episode to this app. </string>
+                                        <string key="content">Go to overcast or the Podcasts app and tap on share. From the share sheet choose PodcastWatch to save a podcast or episode to this app. (You may have to enable it in your sharing settings)</string>
                                         <attributes>
                                             <color key="NSColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <font key="NSFont" size="17" name="HelveticaNeue"/>
@@ -34,12 +34,14 @@
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.25435576625266615" green="0.78376260024694178" blue="0.98488817399999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="AbE-22-BhF" secondAttribute="trailing" constant="30" id="7fW-lr-rly"/>
                             <constraint firstAttribute="trailingMargin" secondItem="AbE-22-BhF" secondAttribute="trailing" constant="30" id="Ber-gC-r8L"/>
                             <constraint firstItem="AbE-22-BhF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Hao-qs-WnB"/>
                             <constraint firstItem="AbE-22-BhF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="lMc-77-2Gv"/>
+                            <constraint firstItem="AbE-22-BhF" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mkB-Tq-lc5"/>
+                            <constraint firstItem="AbE-22-BhF" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ykI-3V-mda"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
@@ -47,6 +49,8 @@
                                 <exclude reference="Ber-gC-r8L"/>
                                 <exclude reference="Hao-qs-WnB"/>
                                 <exclude reference="lMc-77-2Gv"/>
+                                <exclude reference="mkB-Tq-lc5"/>
+                                <exclude reference="ykI-3V-mda"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -55,6 +59,8 @@
                                 <include reference="Ber-gC-r8L"/>
                                 <include reference="Hao-qs-WnB"/>
                                 <include reference="lMc-77-2Gv"/>
+                                <include reference="mkB-Tq-lc5"/>
+                                <include reference="ykI-3V-mda"/>
                             </mask>
                         </variation>
                     </view>
