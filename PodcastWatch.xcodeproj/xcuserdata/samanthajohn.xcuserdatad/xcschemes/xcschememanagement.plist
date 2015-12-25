@@ -4,6 +4,16 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Complication - Podcasts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>11</integer>
+		</dict>
+		<key>Glance - Podcasts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>10</integer>
+		</dict>
 		<key>PodcastWatch.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
@@ -13,6 +23,16 @@
 		<dict>
 			<key>orderHint</key>
 			<integer>8</integer>
+		</dict>
+		<key>Podcasts.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>9</integer>
+		</dict>
+		<key>WatchOSSharedModels.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>12</integer>
 		</dict>
 		<key>WatchSync.xcscheme</key>
 		<dict>
@@ -33,6 +53,16 @@
 			<true/>
 		</dict>
 		<key>472CDF431C2C8A9D001E0609</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>476BD0751C2DF9B5003F5000</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>476BD0A41C2DFCF1003F5000</key>
 		<dict>
 			<key>primary</key>
 			<true/>
