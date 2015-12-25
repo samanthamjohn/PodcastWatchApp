@@ -16,19 +16,12 @@ class PodcastDataHandler: NSObject {
             self.dataController = appDelegate.dataController
         }
         super.init()
-        
-        // build a fake episode
-        if let dataController = self.dataController,
-            let desc = Episode.entityDescription(dataController.managedObjectContext)  {
-            _ = Episode(context: dataController.managedObjectContext, entityDescription: desc, sharedPath: "foo")
-                dataController.saveContext()
-        }
     }
     
     func fetchEpisodes() -> [Episode] {
 
         if let dataController = self.dataController {
-            return Episode.allUnsyncedEpisodes(dataController.managedObjectContext)
+            return Episode.allSyncedEpisodes(dataController.managedObjectContext)
         }
 
         
