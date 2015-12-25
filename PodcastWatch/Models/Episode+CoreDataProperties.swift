@@ -12,11 +12,13 @@
 import Foundation
 import CoreData
 
-extension Episode {
+public extension Episode {
 
     @NSManaged var title: String?
     @NSManaged var fileURLString: String?
     @NSManaged var imageURLString: String?
     @NSManaged var episodeDescription: String?
+    @NSManaged public var sharedURLString: String?
+    @NSManaged var isSynced: Bool
 
 }

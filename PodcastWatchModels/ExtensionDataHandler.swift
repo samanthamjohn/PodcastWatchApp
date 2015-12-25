@@ -7,19 +7,17 @@
 //
 
 import UIKit
-public let defaultsSuiteName = "group.PodcastWatch"
-public let podcastURLSKey = "podcastsURLS"
-public let episodesKey = "episodes"
+import CoreData
+
 
 public enum PodcastType: String {
     case ITunes, Overcast
 }
 
 public class ExtensionDataHandler: NSObject {
+    
+    let dataController = DataController()
 
-    
-    let defaults: NSUserDefaults? = NSUserDefaults(suiteName: defaultsSuiteName)
-    
     public func syncExtensionItem(input: AnyObject) {
         if let attachments = input.attachments
         {
@@ -49,26 +47,25 @@ public class ExtensionDataHandler: NSObject {
         
     }
     
-    func syncPathAndType(path path: String, type: PodcastType) {
-        print(path)
-        if let defaults = self.defaults {
-            var podcasts: [String: [String]] = [PodcastType.Overcast.rawValue: [], PodcastType.ITunes.rawValue : []]
-            if let existingPodcasts = defaults.objectForKey(podcastURLSKey) as? [String: [String]],
-                var list = existingPodcasts[type.rawValue] {
-                    
-                    
-                    list.append(path)
-                    podcasts = existingPodcasts
-                    podcasts[type.rawValue] = list
-                    
-            } else {
-                podcasts[type.rawValue] = [path]
+    private func syncPathAndType(path path: String, type: PodcastType) {
+        
+        if (type == .Overcast) {
+            let context = self.dataController.managedObjectContext
+            if let entityDescription = Episode.entityDescription(context) {
+                
+                _ = Episode(context: context, entityDescription: entityDescription, sharedPath: path)
+                
+                do {
+                    try context.save()
+                } catch {
+                    print("Error: \(error)")
+                }
+                
             }
             
-            defaults.setObject(podcasts, forKey: podcastURLSKey)
-            defaults.synchronize()
-            
+
         }
+
     }
     
     func getiTunesURLFromSharedString(str: String) -> NSURL? {

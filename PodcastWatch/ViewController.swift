@@ -16,8 +16,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        self.episodes = []
+        let dataHandler = PodcastDataHandler()
+        self.episodes = dataHandler.fetchEpisodes()
         self.view.addSubview(self.tableView)
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
         self.tableView.dataSource = self
@@ -37,7 +37,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
-//            cell.textLabel?.text = self.episodes[indexPath.row].url.absoluteString
+            cell.textLabel?.text = self.episodes[indexPath.row].sharedURLString
             return cell
         }
         
@@ -59,7 +59,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let podcast = self.episodes[indexPath.row]
-//        UIApplication.sharedApplication().openURL(podcast.url)
+        if let str = podcast.sharedURLString,
+            let url = NSURL(string: str)
+        {
+            UIApplication.sharedApplication().openURL(url)
+        }
     }
     
     override func viewDidLayoutSubviews() {

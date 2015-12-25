@@ -10,45 +10,30 @@ import UIKit
 import PodcastWatchModels
 
 class PodcastDataHandler: NSObject {
-    
+    var dataController: DataController?
     override init() {
+        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+            self.dataController = appDelegate.dataController
+        }
         super.init()
-        self.buildEpisodes()
+        
+        // build a fake episode
+        if let dataController = self.dataController,
+            let desc = Episode.entityDescription(dataController.managedObjectContext)  {
+            _ = Episode(context: dataController.managedObjectContext, entityDescription: desc, sharedPath: "foo")
+                dataController.saveContext()
+        }
     }
-        
-    private lazy var defaults: NSUserDefaults? =  {
-        return NSUserDefaults(suiteName:  defaultsSuiteName)
-    }()
     
-    private func buildEpisodes() {
-        let episodeBuilder = PodcastEpisodeBuilder()
-        
-        if let defaults = self.defaults,
-            let podcastData = defaults.objectForKey(podcastURLSKey) as? [String: [String]],
-            let episodeData = podcastData[PodcastType.Overcast.rawValue]
-        {
+    func fetchEpisodes() -> [Episode] {
 
-            episodeData.forEach{ (path) -> () in
-                episodeBuilder.buildEpisode(path) { (success, error) in
-                    if (success) {
-                        self.removeEpisodeAtPath(path)
-                    }
-                }
-            }
+        if let dataController = self.dataController {
+            return Episode.allUnsyncedEpisodes(dataController.managedObjectContext)
         }
+
         
+        return []
     }
     
-    private func removeEpisodeAtPath(path: String){
-        if let defaults = self.defaults,
-            var podcastData = defaults.objectForKey(podcastURLSKey) as? [String: [String]],
-            var episodeData = podcastData[PodcastType.Overcast.rawValue]
-        {
-            if let index = episodeData.indexOf(path) {
-                episodeData.removeAtIndex(index)
-                podcastData[PodcastType.Overcast.rawValue] = episodeData
-                defaults.setObject(podcastData, forKey: podcastURLSKey)
-            }
-        }
-    }
+    
 }
