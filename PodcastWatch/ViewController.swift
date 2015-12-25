@@ -37,7 +37,8 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
-            cell.textLabel?.text = self.episodes[indexPath.row].sharedURLString
+            cell.textLabel?.text = self.episodes[indexPath.row].title
+            
             return cell
         }
         

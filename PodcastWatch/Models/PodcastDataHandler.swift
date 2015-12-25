@@ -11,12 +11,16 @@ import PodcastWatchModels
 
 class PodcastDataHandler: NSObject {
     var dataController: DataController?
+    let downloader = PodcastEpisodeDownloader()
     override init() {
         if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
-            self.dataController = appDelegate.dataController
+            let dataController = appDelegate.dataController
+            self.dataController = dataController
+            downloader.downloadUnsyncedEpisodeData(dataController.managedObjectContext)
         }
         super.init()
     }
+    
     
     func fetchEpisodes() -> [Episode] {
 
@@ -24,7 +28,6 @@ class PodcastDataHandler: NSObject {
             return Episode.allSyncedEpisodes(dataController.managedObjectContext)
         }
 
-        
         return []
     }
     
