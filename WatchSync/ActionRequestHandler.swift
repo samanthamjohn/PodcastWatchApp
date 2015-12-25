@@ -18,7 +18,7 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
     
         self.extensionContext = context
         
-        let dataHandler = PodcastDataHandler()
+        let dataHandler = ExtensionDataHandler()
         context.inputItems.forEach { (input) -> () in
             dataHandler.syncExtensionItem(input)
         }
