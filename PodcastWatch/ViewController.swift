@@ -14,6 +14,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     let cellIdentifier = "cellIdentifier"
     var episodes: [Episode] = []
     let dataHandler = PodcastDataHandler()
+    let watchSync = WatchSync()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,13 +72,17 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let podcast = self.episodes[indexPath.row]
         let downloader = PodcastEpisodeDownloader()
+        downloader.watchSync = self.watchSync
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         cell?.textLabel?.text = "Begin Downloading"
         downloader.downloadEpisodeMp3(podcast) { (progressPercent) -> Void in
             
             dispatch_async(dispatch_get_main_queue(), {
                 if (progressPercent == 1) {
-                    cell?.textLabel?.text = "Downloaded \(podcast.title)"
+                    if let title = podcast.title {
+                        cell?.textLabel?.text = "Downloaded \(title)"
+                    }
+                    
                 } else {
                     let progressText = "\(Int(progressPercent * 100))% Done"
                     cell?.textLabel?.text = progressText

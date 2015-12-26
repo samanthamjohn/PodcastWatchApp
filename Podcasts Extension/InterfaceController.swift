@@ -10,7 +10,7 @@ import WatchKit
 import Foundation
 
 class InterfaceController: WKInterfaceController {
-    
+    let watchSync = WatchSync()
     var player: WKAudioFilePlayer?
     var playerItem: WKAudioFilePlayerItem?
     var isPlaying = false
@@ -71,16 +71,26 @@ class InterfaceController: WKInterfaceController {
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
-        let fileManager = NSFileManager()
-        if let containerURL = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.PodcastWatch"),
-            let filePath = containerURL.URLByAppendingPathComponent("media.mp3").path
+        let fileManager = NSFileManager.defaultManager()
+   
+        if let containerURL = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.PodcastWatch")
         {
+            
+            let fileURL = containerURL.URLByAppendingPathComponent("media.mp3")
+            let fileCoordinator = NSFileCoordinator()
+            
+            fileCoordinator.coordinateReadingItemAtURL(fileURL, options: .WithoutChanges, error: nil, byAccessor: { (url) -> Void in
+                if let path = url.path {
+                    let exists = fileManager.fileExistsAtPath(path)
+                    print("exists: \(exists), path: \(path)")
+                    
+                }
+                let audioAsset = WKAudioFileAsset(URL: url)
+                let playerItem = WKAudioFilePlayerItem(asset: audioAsset)
+                self.playerItem = playerItem
+                self.player = WKAudioFilePlayer(playerItem: playerItem)
 
-            let fileURL = NSURL(fileURLWithPath: filePath)
-            let audioAsset = WKAudioFileAsset(URL: fileURL)
-            let playerItem = WKAudioFilePlayerItem(asset: audioAsset)
-            self.playerItem = playerItem
-            self.player = WKAudioFilePlayer(playerItem: playerItem)
+            })
             
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopTimer", name: WKAudioFilePlayerItemDidPlayToEndTimeNotification, object: nil)
            

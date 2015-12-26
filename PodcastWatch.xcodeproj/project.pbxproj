@@ -39,6 +39,8 @@
 		476BD0B81C2DFE9C003F5000 /* Episode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0531C2DCCDA003F5000 /* Episode+CoreDataProperties.swift */; };
 		476BD0B91C2DFE9E003F5000 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0541C2DCCDA003F5000 /* Episode.swift */; };
 		476BD0BA1C2DFEA2003F5000 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0661C2DE3AC003F5000 /* DataController.swift */; };
+		47838D841C2F345800924F8D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47838D831C2F345800924F8D /* WatchSync.swift */; };
+		47838D851C2F368200924F8D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47838D831C2F345800924F8D /* WatchSync.swift */; };
 		B28C8A80D3675D789C0FD231 /* libPods-PodcastWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -158,6 +160,7 @@
 		476BD0911C2DF9B5003F5000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		476BD09D1C2DFB2E003F5000 /* Podcasts Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Podcasts Extension.entitlements"; sourceTree = "<group>"; };
 		476BD09E1C2DFB4C003F5000 /* Podcasts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Podcasts.entitlements; path = Podcasts/Podcasts.entitlements; sourceTree = "<group>"; };
+		47838D831C2F345800924F8D /* WatchSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchSync.swift; path = ../PodcastWatch/Models/WatchSync.swift; sourceTree = "<group>"; };
 		4B6D4BEA4D608A86406C3521 /* Pods-PodcastWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		FAA3551410D2F219BE166C7F /* Pods-PodcastWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.release.xcconfig"; sourceTree = "<group>"; };
 		FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodcastWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,6 +215,7 @@
 				476BD09E1C2DFB4C003F5000 /* Podcasts.entitlements */,
 				472CDEBB1C2C6F75001E0609 /* iOS App */,
 				472CDF2E1C2C8612001E0609 /* iOS Extension */,
+				47838D861C2F36EE00924F8D /* Watch + iOS Shared */,
 				472CDF451C2C8A9D001E0609 /* iOS Shared Models */,
 				476BD0771C2DF9B5003F5000 /* iWatch App */,
 				476BD0861C2DF9B5003F5000 /* iWatch Extension */,
@@ -310,6 +314,15 @@
 			);
 			name = "iWatch Extension";
 			path = "Podcasts Extension";
+			sourceTree = "<group>";
+		};
+		47838D861C2F36EE00924F8D /* Watch + iOS Shared */ = {
+			isa = PBXGroup;
+			children = (
+				47838D831C2F345800924F8D /* WatchSync.swift */,
+			);
+			name = "Watch + iOS Shared";
+			path = PodcastWatchModels;
 			sourceTree = "<group>";
 		};
 		7DACE131559CD96D8BEE1D74 /* Pods */ = {
@@ -605,6 +618,7 @@
 				476BD05A1C2DCCDA003F5000 /* PodcastDataHandler.swift in Sources */,
 				472CDEBF1C2C6F75001E0609 /* ViewController.swift in Sources */,
 				476BD05B1C2DCCDA003F5000 /* PodcastEpisodeDownloader.swift in Sources */,
+				47838D841C2F345800924F8D /* WatchSync.swift in Sources */,
 				472CDEBD1C2C6F75001E0609 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -640,6 +654,7 @@
 				476BD08E1C2DF9B5003F5000 /* ComplicationController.swift in Sources */,
 				476BD0B81C2DFE9C003F5000 /* Episode+CoreDataProperties.swift in Sources */,
 				476BD0881C2DF9B5003F5000 /* InterfaceController.swift in Sources */,
+				47838D851C2F368200924F8D /* WatchSync.swift in Sources */,
 				476BD08C1C2DF9B5003F5000 /* GlanceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

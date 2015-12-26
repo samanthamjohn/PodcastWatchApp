@@ -14,7 +14,9 @@ import PodcastWatchModels
 let beginDownloadingNotification = "beginDownloadingNotification"
 
 class PodcastEpisodeDownloader: NSObject {
-
+    
+    var watchSync: WatchSync?
+    
     func downloadUnsyncedEpisodeData(context: NSManagedObjectContext) {
         Episode.allUnsyncedEpisodes(context).forEach { (episode) -> () in
             NSNotificationCenter.defaultCenter().postNotificationName(beginDownloadingNotification, object: nil)
@@ -23,12 +25,8 @@ class PodcastEpisodeDownloader: NSObject {
     }
     
     func downloadEpisodeMp3(episode: Episode, progressCallback: (progressPercent: Double) -> Void) {
-        let fileManager = NSFileManager()
 
-        if let containerURL = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.PodcastWatch"),
-            let filePath = containerURL.URLByAppendingPathComponent("media.mp3").path,
-            
-            let fileURLString = episode.fileURLString
+        if let fileURLString = episode.fileURLString
         {
             let manager = AFHTTPSessionManager()
             
@@ -45,9 +43,10 @@ class PodcastEpisodeDownloader: NSObject {
                     progressCallback(progressPercent: progress.fractionCompleted)
                 
                 }, success: { (task, responseObject) -> Void in
-                    if let responseObject = responseObject as? NSData {
-                        fileManager.createFileAtPath(filePath, contents: responseObject, attributes: nil)
-                        print("complete")
+                    if let responseObject = responseObject as? NSData,
+                    let watchSync = self.watchSync
+                    {
+                        watchSync.writeToFile(responseObject)
                     }
                     
                 }) { (operation, error) -> Void in
