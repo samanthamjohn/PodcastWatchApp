@@ -19,12 +19,47 @@ class PodcastEpisodeDownloader: NSObject {
         }
     }
     
+    func downloadEpisodeMp3(episode: Episode, progressCallback: (progressPercent: Double) -> Void) {
+        let fileManager = NSFileManager()
+
+        if let containerURL = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.PodcastWatch"),
+            let filePath = containerURL.URLByAppendingPathComponent("media.mp3").path,
+            
+            let fileURLString = episode.fileURLString
+        {
+            let manager = AFHTTPSessionManager()
+            
+            let contentType = "audio/mpeg"
+            let responseSerializer = AFCompoundResponseSerializer()
+            
+            responseSerializer.acceptableContentTypes = NSSet(object: contentType) as? Set<String>
+            
+            manager.responseSerializer = responseSerializer
+            
+            manager.GET(fileURLString, parameters: nil, progress: { (progress) -> Void in
+                
+                    progressCallback(progressPercent: progress.fractionCompleted)
+                
+                }, success: { (task, responseObject) -> Void in
+                    if let responseObject = responseObject as? NSData {
+                        fileManager.createFileAtPath(filePath, contents: responseObject, attributes: nil)
+                        print("complete")
+                    }
+                    
+                }) { (operation, error) -> Void in
+                    
+                    print("Error: \(error)")
+            }
+        }
+        
+    }
+    
     func downloadEpisodeData(episode: Episode) {
         
         let manager = AFHTTPSessionManager()
         let responseSerializer = AFCompoundResponseSerializer()
         
-        responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as! Set<String>
+        responseSerializer.acceptableContentTypes = NSSet(object: "text/html") as? Set<String>
 
         manager.responseSerializer = responseSerializer
         if let path = episode.sharedURLString {

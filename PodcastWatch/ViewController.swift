@@ -22,6 +22,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
+        
     }
     
     
@@ -37,12 +38,15 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
+
             cell.textLabel?.text = self.episodes[indexPath.row].title
-            
+
             return cell
+        } else {
+
         }
         
-        return UITableViewCell(frame: CGRectZero)
+        return UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
         
     }
     
@@ -60,11 +64,23 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     // MARK: - UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let podcast = self.episodes[indexPath.row]
-        if let str = podcast.sharedURLString,
-            let url = NSURL(string: str)
-        {
-            UIApplication.sharedApplication().openURL(url)
+        let downloader = PodcastEpisodeDownloader()
+        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        cell?.textLabel?.text = "Begin Downloading"
+        downloader.downloadEpisodeMp3(podcast) { (progressPercent) -> Void in
+            
+            dispatch_async(dispatch_get_main_queue(), {
+                if (progressPercent == 1) {
+                    cell?.textLabel?.text = "Downloaded \(podcast.title)"
+                } else {
+                    let progressText = "\(Int(progressPercent * 100))% Done"
+                    cell?.textLabel?.text = progressText
+                }
+            });
+
+            
         }
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
     }
     
     override func viewDidLayoutSubviews() {

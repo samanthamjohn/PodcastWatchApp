@@ -33,6 +33,13 @@ public class Episode: NSManagedObject {
         return self.allEpisodes(context, predicate: NSPredicate(format: "isSynced = false"))
     }
     
+    public func fileURL() -> NSURL? {
+        if let fileURLString = self.fileURLString {
+            return NSURL(string: fileURLString)
+        }
+        return nil
+    }
+    
     private static func allEpisodes(context: NSManagedObjectContext, predicate: NSPredicate) -> [Episode] {
         let fetchRequest = NSFetchRequest()
         fetchRequest.entity = Episode.entityDescription(context)

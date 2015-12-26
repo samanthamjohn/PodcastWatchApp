@@ -847,6 +847,7 @@
 		472CDF4E1C2C8A9D001E0609 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -873,6 +874,7 @@
 		472CDF4F1C2C8A9D001E0609 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -1025,6 +1027,7 @@
 				476BD0971C2DF9B6003F5000 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		476BD0991C2DF9B6003F5000 /* Build configuration list for PBXNativeTarget "Podcasts" */ = {
 			isa = XCConfigurationList;
@@ -1033,6 +1036,7 @@
 				476BD09B1C2DF9B6003F5000 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
