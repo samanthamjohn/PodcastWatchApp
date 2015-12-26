@@ -11,10 +11,13 @@ import Foundation
 import CoreData
 import PodcastWatchModels
 
+let beginDownloadingNotification = "beginDownloadingNotification"
+
 class PodcastEpisodeDownloader: NSObject {
 
     func downloadUnsyncedEpisodeData(context: NSManagedObjectContext) {
         Episode.allUnsyncedEpisodes(context).forEach { (episode) -> () in
+            NSNotificationCenter.defaultCenter().postNotificationName(beginDownloadingNotification, object: nil)
             self.downloadEpisodeData(episode)
         }
     }
@@ -35,6 +38,7 @@ class PodcastEpisodeDownloader: NSObject {
             responseSerializer.acceptableContentTypes = NSSet(object: contentType) as? Set<String>
             
             manager.responseSerializer = responseSerializer
+            
             
             manager.GET(fileURLString, parameters: nil, progress: { (progress) -> Void in
                 
@@ -98,6 +102,8 @@ class PodcastEpisodeDownloader: NSObject {
                 if let delegate = UIApplication.sharedApplication().delegate as? AppDelegate {
                     delegate.dataController.saveContext()
                 }
+                
+                NSNotificationCenter.defaultCenter().postNotificationName(episodesDownloaded, object: nil)
 
             } catch {
                 print("html parse error: \(error)")

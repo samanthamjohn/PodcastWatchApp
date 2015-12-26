@@ -8,23 +8,29 @@
 
 import UIKit
 import PodcastWatchModels
-
+let episodesDownloaded = "episodesDownloaded"
 class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     let tableView = UITableView()
     let cellIdentifier = "cellIdentifier"
     var episodes: [Episode] = []
+    let dataHandler = PodcastDataHandler()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let dataHandler = PodcastDataHandler()
-        self.episodes = dataHandler.fetchEpisodes()
+        self.episodes = self.dataHandler.fetchEpisodes()
         self.view.addSubview(self.tableView)
         self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "doneDownloading", name: episodesDownloaded, object: nil)
+        
     }
     
+    func doneDownloading() {
+        self.episodes = self.dataHandler.fetchEpisodes()
+        self.tableView.reloadData()
+    }
     
     // MARK: - UITableViewDataSoure
     
