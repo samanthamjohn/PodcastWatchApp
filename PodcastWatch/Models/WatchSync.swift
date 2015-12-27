@@ -64,11 +64,11 @@ class WatchSync: NSObject, WCSessionDelegate {
             let fileManager = NSFileManager.defaultManager()
             let success = fileManager.createFileAtPath(filePath, contents: data, attributes: nil)
             
-                if (success == true) {
-                    let url = NSURL(fileURLWithPath: filePath)
-                    let transfer = session?.transferFile(url, metadata: nil)
-                    print("transferring: \(transfer?.transferring)")
-                }
+            if (success == true) {
+                let url = NSURL(fileURLWithPath: filePath)
+                let transfer = session?.transferFile(url, metadata: nil)
+                print("transferring: \(transfer?.transferring)")
+            }
         }
     }
 }
