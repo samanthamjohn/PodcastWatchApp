@@ -1,29 +1,55 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9531" systemVersion="15C50" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="9515"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--Podcasts Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="Podcasts" customModuleProvider="target">
+                <controller id="AgC-eL-Hgc" customClass="PodcastsInterfaceController" customModule="Podcasts_Extension">
+                    <items>
+                        <table alignment="left" id="YDn-dE-Jc9">
+                            <items>
+                                <tableRow id="uFs-QY-JM4" customClass="PodcastRowController" customModule="Podcasts_Extension">
+                                    <group key="rootItem" width="1" alignment="left" id="Zks-2T-DYe">
+                                        <items>
+                                            <label width="104.5" height="38.5" alignment="left" text="Hey Steve!" id="3uN-Rd-NiW"/>
+                                        </items>
+                                    </group>
+                                    <connections>
+                                        <outlet property="titleLabel" destination="3uN-Rd-NiW" id="l1y-Ao-Sbv"/>
+                                        <segue destination="tfz-TT-2op" kind="push" id="zmb-si-XK5"/>
+                                    </connections>
+                                </tableRow>
+                            </items>
+                        </table>
+                    </items>
+                    <color key="backgroundColor" red="0.52053295671066202" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="playButton" destination="5wi-dX-d4e" id="lIN-iK-9jV"/>
+                        <outlet property="table" destination="YDn-dE-Jc9" id="GHr-R7-PpQ"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="164" y="217"/>
+        </scene>
+        <!--Player Interface Controller-->
+        <scene sceneID="WBk-OF-kac">
+            <objects>
+                <controller id="tfz-TT-2op" customClass="PlayerInterfaceController" customModule="Podcasts_Extension">
                     <items>
                         <button width="1" alignment="left" title="Play" id="5wi-dX-d4e">
                             <connections>
                                 <action selector="playBtnTapped" destination="AgC-eL-Hgc" id="sFC-E1-HeR"/>
                             </connections>
                         </button>
-                        <label height="1" heightAdjustment="-45" alignment="center" verticalAlignment="bottom" textAlignment="center" id="aP0-OH-N5e"/>
                     </items>
-                    <connections>
-                        <outlet property="playButton" destination="5wi-dX-d4e" id="lIN-iK-9jV"/>
-                        <outlet property="timeElapsedLabel" destination="aP0-OH-N5e" id="HFe-kn-wO6"/>
-                    </connections>
+                    <color key="backgroundColor" red="0.0" green="0.016062608867891903" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 </controller>
             </objects>
-            <point key="canvasLocation" x="164" y="217"/>
+            <point key="canvasLocation" x="392" y="220"/>
         </scene>
         <!--Glance Interface Controller-->
         <scene sceneID="rjY-Ar-IMT">

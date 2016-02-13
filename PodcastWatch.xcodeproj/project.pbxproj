@@ -30,7 +30,7 @@
 		476BD07A1C2DF9B5003F5000 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 476BD0781C2DF9B5003F5000 /* Interface.storyboard */; };
 		476BD07C1C2DF9B5003F5000 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 476BD07B1C2DF9B5003F5000 /* Assets.xcassets */; };
 		476BD0831C2DF9B5003F5000 /* Podcasts Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 476BD0821C2DF9B5003F5000 /* Podcasts Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		476BD0881C2DF9B5003F5000 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0871C2DF9B5003F5000 /* InterfaceController.swift */; };
+		476BD0881C2DF9B5003F5000 /* PlayerInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0871C2DF9B5003F5000 /* PlayerInterfaceController.swift */; };
 		476BD08A1C2DF9B5003F5000 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0891C2DF9B5003F5000 /* ExtensionDelegate.swift */; };
 		476BD08C1C2DF9B5003F5000 /* GlanceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD08B1C2DF9B5003F5000 /* GlanceController.swift */; };
 		476BD08E1C2DF9B5003F5000 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD08D1C2DF9B5003F5000 /* ComplicationController.swift */; };
@@ -41,6 +41,7 @@
 		476BD0BA1C2DFEA2003F5000 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0661C2DE3AC003F5000 /* DataController.swift */; };
 		47838D841C2F345800924F8D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47838D831C2F345800924F8D /* WatchSync.swift */; };
 		47838D851C2F368200924F8D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47838D831C2F345800924F8D /* WatchSync.swift */; };
+		92BF4E561C6FCC5200AA3BCA /* PodcastsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BF4E541C6FBDF800AA3BCA /* PodcastsInterfaceController.swift */; };
 		B28C8A80D3675D789C0FD231 /* libPods-PodcastWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -152,7 +153,7 @@
 		476BD07B1C2DF9B5003F5000 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		476BD07D1C2DF9B5003F5000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		476BD0821C2DF9B5003F5000 /* Podcasts Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Podcasts Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		476BD0871C2DF9B5003F5000 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		476BD0871C2DF9B5003F5000 /* PlayerInterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerInterfaceController.swift; sourceTree = "<group>"; };
 		476BD0891C2DF9B5003F5000 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
 		476BD08B1C2DF9B5003F5000 /* GlanceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlanceController.swift; sourceTree = "<group>"; };
 		476BD08D1C2DF9B5003F5000 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
@@ -162,6 +163,7 @@
 		476BD09E1C2DFB4C003F5000 /* Podcasts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Podcasts.entitlements; path = Podcasts/Podcasts.entitlements; sourceTree = "<group>"; };
 		47838D831C2F345800924F8D /* WatchSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchSync.swift; path = ../PodcastWatch/Models/WatchSync.swift; sourceTree = "<group>"; };
 		4B6D4BEA4D608A86406C3521 /* Pods-PodcastWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.debug.xcconfig"; sourceTree = "<group>"; };
+		92BF4E541C6FBDF800AA3BCA /* PodcastsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastsInterfaceController.swift; sourceTree = "<group>"; };
 		FAA3551410D2F219BE166C7F /* Pods-PodcastWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.release.xcconfig"; sourceTree = "<group>"; };
 		FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodcastWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -305,7 +307,8 @@
 			isa = PBXGroup;
 			children = (
 				476BD09D1C2DFB2E003F5000 /* Podcasts Extension.entitlements */,
-				476BD0871C2DF9B5003F5000 /* InterfaceController.swift */,
+				476BD0871C2DF9B5003F5000 /* PlayerInterfaceController.swift */,
+				92BF4E541C6FBDF800AA3BCA /* PodcastsInterfaceController.swift */,
 				476BD0891C2DF9B5003F5000 /* ExtensionDelegate.swift */,
 				476BD08B1C2DF9B5003F5000 /* GlanceController.swift */,
 				476BD08D1C2DF9B5003F5000 /* ComplicationController.swift */,
@@ -653,9 +656,10 @@
 				476BD0B91C2DFE9E003F5000 /* Episode.swift in Sources */,
 				476BD08E1C2DF9B5003F5000 /* ComplicationController.swift in Sources */,
 				476BD0B81C2DFE9C003F5000 /* Episode+CoreDataProperties.swift in Sources */,
-				476BD0881C2DF9B5003F5000 /* InterfaceController.swift in Sources */,
+				476BD0881C2DF9B5003F5000 /* PlayerInterfaceController.swift in Sources */,
 				47838D851C2F368200924F8D /* WatchSync.swift in Sources */,
 				476BD08C1C2DF9B5003F5000 /* GlanceController.swift in Sources */,
+				92BF4E561C6FCC5200AA3BCA /* PodcastsInterfaceController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -876,6 +880,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatchModels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
@@ -903,6 +908,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatchModels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "";

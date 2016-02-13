@@ -9,7 +9,7 @@
 import WatchKit
 import Foundation
 
-class InterfaceController: WKInterfaceController {
+class PlayerInterfaceController: WKInterfaceController {
     let watchSync = WatchSync()
     var player: WKAudioFilePlayer?
     var playerItem: WKAudioFilePlayerItem?
