@@ -17,6 +17,7 @@ class PlayerInterfaceController: WKInterfaceController {
     var timer: NSTimer?
     
     @IBOutlet weak var timeElapsedLabel: WKInterfaceLabel?
+    @IBOutlet weak var nameLabel: WKInterfaceLabel?
     @IBOutlet weak var playButton: WKInterfaceButton?
     
     @IBAction func playBtnTapped() {
@@ -88,8 +89,8 @@ class PlayerInterfaceController: WKInterfaceController {
                 let audioAsset = WKAudioFileAsset(URL: url)
                 let playerItem = WKAudioFilePlayerItem(asset: audioAsset)
                 self.playerItem = playerItem
+                self.nameLabel?.setText(audioAsset.title)
                 self.player = WKAudioFilePlayer(playerItem: playerItem)
-
             })
             
             NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopTimer", name: WKAudioFilePlayerItemDidPlayToEndTimeNotification, object: nil)

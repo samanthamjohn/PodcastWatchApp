@@ -40,6 +40,15 @@ public class Episode: NSManagedObject {
         return nil
     }
     
+    public func metadata() -> [String: AnyObject]? {
+        if let title = self.title {
+            return [
+                "title": title
+            ]
+        }
+        return nil
+    }
+    
     private static func allEpisodes(context: NSManagedObjectContext, predicate: NSPredicate) -> [Episode] {
         let fetchRequest = NSFetchRequest()
         fetchRequest.entity = Episode.entityDescription(context)

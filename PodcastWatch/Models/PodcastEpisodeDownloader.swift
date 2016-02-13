@@ -46,7 +46,7 @@ class PodcastEpisodeDownloader: NSObject {
                     if let responseObject = responseObject as? NSData,
                     let watchSync = self.watchSync
                     {
-                        watchSync.writeToFile(responseObject)
+                        watchSync.writeToFile(responseObject, metadata: episode.metadata())
                     }
                     
                 }) { (operation, error) -> Void in

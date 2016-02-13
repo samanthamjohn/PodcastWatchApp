@@ -58,7 +58,7 @@ class WatchSync: NSObject, WCSessionDelegate {
         return nil
     }()
     
-    func writeToFile(data: NSData) {
+    func writeToFile(data: NSData, metadata: [String: AnyObject]?) {
         if let filePath = self.mediaFilePath {
             
             let fileManager = NSFileManager.defaultManager()
@@ -66,7 +66,7 @@ class WatchSync: NSObject, WCSessionDelegate {
             
             if (success == true) {
                 let url = NSURL(fileURLWithPath: filePath)
-                let transfer = session?.transferFile(url, metadata: nil)
+                let transfer = session?.transferFile(url, metadata: metadata)
                 print("transferring: \(transfer?.transferring)")
             }
         }

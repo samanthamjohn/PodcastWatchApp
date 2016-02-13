@@ -40,6 +40,8 @@
             <objects>
                 <controller id="tfz-TT-2op" customClass="PlayerInterfaceController" customModule="Podcasts_Extension">
                     <items>
+                        <label width="136" height="54.5" alignment="left" text="Name" id="moS-lW-BUl"/>
+                        <label width="136" height="50.5" alignment="left" text="Time" id="AS2-y3-icr"/>
                         <button width="1" alignment="left" title="Play" id="5wi-dX-d4e">
                             <connections>
                                 <action selector="playBtnTapped" destination="AgC-eL-Hgc" id="sFC-E1-HeR"/>
@@ -47,6 +49,10 @@
                         </button>
                     </items>
                     <color key="backgroundColor" red="0.0" green="0.016062608867891903" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    <connections>
+                        <outlet property="nameLabel" destination="moS-lW-BUl" id="7CV-AA-5f6"/>
+                        <outlet property="timeElapsedLabel" destination="AS2-y3-icr" id="yqD-fW-8ui"/>
+                    </connections>
                 </controller>
             </objects>
             <point key="canvasLocation" x="392" y="220"/>
