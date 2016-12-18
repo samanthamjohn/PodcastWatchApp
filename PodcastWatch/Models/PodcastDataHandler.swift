@@ -13,7 +13,7 @@ class PodcastDataHandler: NSObject {
     var dataController: DataController?
     let downloader = PodcastEpisodeDownloader()
     override init() {
-        if let appDelegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+        if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             let dataController = appDelegate.dataController
             self.dataController = dataController
             downloader.downloadUnsyncedEpisodeData(dataController.managedObjectContext)

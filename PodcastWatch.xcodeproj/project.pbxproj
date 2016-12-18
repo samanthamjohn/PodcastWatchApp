@@ -39,9 +39,8 @@
 		476BD0B81C2DFE9C003F5000 /* Episode+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0531C2DCCDA003F5000 /* Episode+CoreDataProperties.swift */; };
 		476BD0B91C2DFE9E003F5000 /* Episode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0541C2DCCDA003F5000 /* Episode.swift */; };
 		476BD0BA1C2DFEA2003F5000 /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476BD0661C2DE3AC003F5000 /* DataController.swift */; };
-		47838D841C2F345800924F8D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47838D831C2F345800924F8D /* WatchSync.swift */; };
-		47838D851C2F368200924F8D /* WatchSync.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47838D831C2F345800924F8D /* WatchSync.swift */; };
 		92BF4E561C6FCC5200AA3BCA /* PodcastsInterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BF4E541C6FBDF800AA3BCA /* PodcastsInterfaceController.swift */; };
+		A2076A711E0702270024F7AC /* WatchSync2.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2076A701E0702270024F7AC /* WatchSync2.swift */; };
 		B28C8A80D3675D789C0FD231 /* libPods-PodcastWatch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */; };
 /* End PBXBuildFile section */
 
@@ -161,9 +160,9 @@
 		476BD0911C2DF9B5003F5000 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		476BD09D1C2DFB2E003F5000 /* Podcasts Extension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "Podcasts Extension.entitlements"; sourceTree = "<group>"; };
 		476BD09E1C2DFB4C003F5000 /* Podcasts.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; name = Podcasts.entitlements; path = Podcasts/Podcasts.entitlements; sourceTree = "<group>"; };
-		47838D831C2F345800924F8D /* WatchSync.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WatchSync.swift; path = ../PodcastWatch/Models/WatchSync.swift; sourceTree = "<group>"; };
 		4B6D4BEA4D608A86406C3521 /* Pods-PodcastWatch.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.debug.xcconfig"; sourceTree = "<group>"; };
 		92BF4E541C6FBDF800AA3BCA /* PodcastsInterfaceController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PodcastsInterfaceController.swift; sourceTree = "<group>"; };
+		A2076A701E0702270024F7AC /* WatchSync2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchSync2.swift; sourceTree = "<group>"; };
 		FAA3551410D2F219BE166C7F /* Pods-PodcastWatch.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PodcastWatch.release.xcconfig"; path = "Pods/Target Support Files/Pods-PodcastWatch/Pods-PodcastWatch.release.xcconfig"; sourceTree = "<group>"; };
 		FDC9E00502EE5329FC2AB651 /* libPods-PodcastWatch.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PodcastWatch.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -322,7 +321,7 @@
 		47838D861C2F36EE00924F8D /* Watch + iOS Shared */ = {
 			isa = PBXGroup;
 			children = (
-				47838D831C2F345800924F8D /* WatchSync.swift */,
+				A2076A701E0702270024F7AC /* WatchSync2.swift */,
 			);
 			name = "Watch + iOS Shared";
 			path = PodcastWatchModels;
@@ -459,6 +458,7 @@
 					472CDEB81C2C6F75001E0609 = {
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = QJ7785G4ZP;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -470,7 +470,7 @@
 					};
 					472CDF2C1C2C8612001E0609 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = QJ7785G4ZP;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -479,11 +479,11 @@
 					};
 					472CDF431C2C8A9D001E0609 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = QJ7785G4ZP;
+						LastSwiftMigration = 0820;
 					};
 					476BD0751C2DF9B5003F5000 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = QJ7785G4ZP;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -492,7 +492,7 @@
 					};
 					476BD0811C2DF9B5003F5000 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = QJ7785G4ZP;
+						LastSwiftMigration = 0820;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
 								enabled = 1;
@@ -624,8 +624,8 @@
 				476BD05A1C2DCCDA003F5000 /* PodcastDataHandler.swift in Sources */,
 				472CDEBF1C2C6F75001E0609 /* ViewController.swift in Sources */,
 				476BD05B1C2DCCDA003F5000 /* PodcastEpisodeDownloader.swift in Sources */,
-				47838D841C2F345800924F8D /* WatchSync.swift in Sources */,
 				472CDEBD1C2C6F75001E0609 /* AppDelegate.swift in Sources */,
+				A2076A711E0702270024F7AC /* WatchSync2.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -660,7 +660,6 @@
 				476BD08E1C2DF9B5003F5000 /* ComplicationController.swift in Sources */,
 				476BD0B81C2DFE9C003F5000 /* Episode+CoreDataProperties.swift in Sources */,
 				476BD0881C2DF9B5003F5000 /* PlayerInterfaceController.swift in Sources */,
-				47838D851C2F368200924F8D /* WatchSync.swift in Sources */,
 				476BD08C1C2DF9B5003F5000 /* GlanceController.swift in Sources */,
 				92BF4E561C6FCC5200AA3BCA /* PodcastsInterfaceController.swift in Sources */,
 			);
@@ -755,7 +754,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -793,7 +792,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -810,11 +809,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = PodcastWatch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/PodcastWatch/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -828,11 +829,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = PodcastWatch/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatch;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/PodcastWatch/Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -842,12 +845,15 @@
 				CODE_SIGN_ENTITLEMENTS = WatchSync/WatchSync.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WatchSync/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatch.WatchSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -857,12 +863,15 @@
 				CODE_SIGN_ENTITLEMENTS = WatchSync/WatchSync.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = WatchSync/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatch.WatchSync;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -875,11 +884,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PodcastWatchModels/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatchModels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -888,6 +899,7 @@
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -903,11 +915,13 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = PodcastWatchModels/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = SamanthaJohn.PodcastWatchModels;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -915,6 +929,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -928,6 +943,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Podcasts Extension/Podcasts Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Podcasts Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -937,8 +953,9 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
 			name = Debug;
 		};
@@ -949,6 +966,7 @@
 				CODE_SIGN_ENTITLEMENTS = "Podcasts Extension/Podcasts Extension.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "Podcasts Extension/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
@@ -958,8 +976,9 @@
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
 			name = Release;
 		};
@@ -971,6 +990,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Podcasts_Extension;
 				INFOPLIST_FILE = Podcasts/Info.plist;
@@ -979,8 +999,9 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
 			name = Debug;
 		};
@@ -992,6 +1013,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = "";
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				IBSC_MODULE = Podcasts_Extension;
 				INFOPLIST_FILE = Podcasts/Info.plist;
@@ -1000,8 +1022,9 @@
 				PROVISIONING_PROFILE = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 2.1;
+				WATCHOS_DEPLOYMENT_TARGET = 3.1;
 			};
 			name = Release;
 		};

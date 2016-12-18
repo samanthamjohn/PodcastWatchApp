@@ -14,13 +14,13 @@ class ActionRequestHandler: NSObject, NSExtensionRequestHandling {
 
     var extensionContext: NSExtensionContext?
     
-    func beginRequestWithExtensionContext(context: NSExtensionContext) {
+    func beginRequest(with context: NSExtensionContext) {
     
         self.extensionContext = context
         
         let dataHandler = ExtensionDataHandler()
         context.inputItems.forEach { (input) -> () in
-            dataHandler.syncExtensionItem(input)
+            dataHandler.syncExtensionItem(input as AnyObject)
         }
         
     }

@@ -17,14 +17,14 @@ class PodcastEpisodeDownloader: NSObject {
     
     var watchSync: WatchSync?
     
-    func downloadUnsyncedEpisodeData(context: NSManagedObjectContext) {
+    func downloadUnsyncedEpisodeData(_ context: NSManagedObjectContext) {
         Episode.allUnsyncedEpisodes(context).forEach { (episode) -> () in
-            NSNotificationCenter.defaultCenter().postNotificationName(beginDownloadingNotification, object: nil)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: beginDownloadingNotification), object: nil)
             self.downloadEpisodeData(episode)
         }
     }
     
-    func downloadEpisodeMp3(episode: Episode, progressCallback: (progressPercent: Double) -> Void) {
+    func downloadEpisodeMp3(_ episode: Episode, progressCallback: @escaping (_ progressPercent: Double) -> Void) {
 
         if let fileURLString = episode.fileURLString
         {
@@ -38,12 +38,12 @@ class PodcastEpisodeDownloader: NSObject {
             manager.responseSerializer = responseSerializer
             
             
-            manager.GET(fileURLString, parameters: nil, progress: { (progress) -> Void in
+            manager.get(fileURLString, parameters: nil, progress: { (progress) -> Void in
                 
-                    progressCallback(progressPercent: progress.fractionCompleted)
+                    progressCallback(progress.fractionCompleted)
                 
                 }, success: { (task, responseObject) -> Void in
-                    if let responseObject = responseObject as? NSData,
+                    if let responseObject = responseObject as? Data,
                     let watchSync = self.watchSync
                     {
                         watchSync.writeToFile(responseObject, metadata: episode.metadata())
@@ -57,7 +57,7 @@ class PodcastEpisodeDownloader: NSObject {
         
     }
     
-    func downloadEpisodeData(episode: Episode) {
+    func downloadEpisodeData(_ episode: Episode) {
         
         let manager = AFHTTPSessionManager()
         let responseSerializer = AFCompoundResponseSerializer()
@@ -66,13 +66,13 @@ class PodcastEpisodeDownloader: NSObject {
 
         manager.responseSerializer = responseSerializer
         if let path = episode.sharedURLString {
-            manager.GET(path, parameters: nil, progress: { (progress) -> Void in
+            manager.get(path, parameters: nil, progress: { (progress) -> Void in
                 
                 print("progress: \(progress)")
                 
                 }, success: { (task, responseObject) -> Void in
                     if let responseObject = responseObject {
-                        self.populateEpisodeFromResponse(episode, responseObject: responseObject)
+                        self.populateEpisodeFromResponse(episode, responseObject: responseObject as AnyObject)
                     }
                     
                 }) { (operation, error) -> Void in
@@ -83,26 +83,26 @@ class PodcastEpisodeDownloader: NSObject {
 
     }
     
-    func populateEpisodeFromResponse(episode: Episode, responseObject: AnyObject) {
-        if let data = responseObject as? NSData {
+    func populateEpisodeFromResponse(_ episode: Episode, responseObject: AnyObject) {
+        if let data = responseObject as? Data {
             do {
-                let node = try IGHTMLDocument(HTMLData: data, encoding: nil)
-                let audioSourceNode = node.queryWithCSS("audio source").firstObject()
-                episode.fileURLString = audioSourceNode.attribute("src")
+                let node = try IGHTMLDocument(htmlData: data, encoding: nil)
+                let audioSourceNode = node.query(withCSS: "audio source").firstObject()
+                episode.fileURLString = audioSourceNode?.attribute("src")
 
-                let titleNode = node.queryWithCSS(".title").firstObject()
-                episode.title = titleNode.innerHtml()
+                let titleNode = node.query(withCSS: ".title").firstObject()
+                episode.title = titleNode?.innerHtml()
                 
-                let imageURLNode = node.queryWithCSS("img.art.fullart").firstObject()
-                episode.imageURLString = imageURLNode.attribute("src")
+                let imageURLNode = node.query(withCSS: "img.art.fullart").firstObject()
+                episode.imageURLString = imageURLNode?.attribute("src")
                 
                 episode.isSynced = true
                 
-                if let delegate = UIApplication.sharedApplication().delegate as? AppDelegate {
+                if let delegate = UIApplication.shared.delegate as? AppDelegate {
                     delegate.dataController.saveContext()
                 }
                 
-                NSNotificationCenter.defaultCenter().postNotificationName(episodesDownloaded, object: nil)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: episodesDownloaded), object: nil)
 
             } catch {
                 print("html parse error: \(error)")

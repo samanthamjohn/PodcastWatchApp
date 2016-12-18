@@ -10,52 +10,52 @@ import Foundation
 import CoreData
 
 
-public class Episode: NSManagedObject {
+open class Episode: NSManagedObject {
     static let entityName = "Episode"
     
     public convenience init(context: NSManagedObjectContext?, entityDescription: NSEntityDescription, sharedPath: String) {
         
-        self.init(entity: entityDescription, insertIntoManagedObjectContext: context)
+        self.init(entity: entityDescription, insertInto: context)
         self.sharedURLString = sharedPath
         self.isSynced = false
     
     }
     
-    public static func entityDescription(context: NSManagedObjectContext) -> NSEntityDescription? {
-        return NSEntityDescription.entityForName(Episode.entityName, inManagedObjectContext: context)
+    open static func entityDescription(_ context: NSManagedObjectContext) -> NSEntityDescription? {
+        return NSEntityDescription.entity(forEntityName: Episode.entityName, in: context)
     }
     
-    public static func allSyncedEpisodes(context: NSManagedObjectContext) -> [Episode] {
+    open static func allSyncedEpisodes(_ context: NSManagedObjectContext) -> [Episode] {
         return self.allEpisodes(context, predicate: NSPredicate(format: "isSynced = true"))
     }
     
-    public static func allUnsyncedEpisodes(context: NSManagedObjectContext) -> [Episode] {
+    open static func allUnsyncedEpisodes(_ context: NSManagedObjectContext) -> [Episode] {
         return self.allEpisodes(context, predicate: NSPredicate(format: "isSynced = false"))
     }
     
-    public func fileURL() -> NSURL? {
+    open func fileURL() -> URL? {
         if let fileURLString = self.fileURLString {
-            return NSURL(string: fileURLString)
+            return URL(string: fileURLString)
         }
         return nil
     }
     
-    public func metadata() -> [String: AnyObject]? {
+    open func metadata() -> [String: AnyObject]? {
         if let title = self.title {
             return [
-                "title": title
+                "title": title as AnyObject
             ]
         }
         return nil
     }
     
-    private static func allEpisodes(context: NSManagedObjectContext, predicate: NSPredicate) -> [Episode] {
-        let fetchRequest = NSFetchRequest()
+    fileprivate static func allEpisodes(_ context: NSManagedObjectContext, predicate: NSPredicate) -> [Episode] {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>()
         fetchRequest.entity = Episode.entityDescription(context)
         
         fetchRequest.predicate = predicate
         do {
-            if let results = try context.executeFetchRequest(fetchRequest) as? [Episode] {
+            if let results = try context.fetch(fetchRequest) as? [Episode] {
                 return results
             }
         } catch {

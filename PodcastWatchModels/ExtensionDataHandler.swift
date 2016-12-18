@@ -14,26 +14,26 @@ public enum PodcastType: String {
     case ITunes, Overcast
 }
 
-public class ExtensionDataHandler: NSObject {
+open class ExtensionDataHandler: NSObject {
     
     let dataController = DataController()
 
-    public func syncExtensionItem(input: AnyObject) {
+    open func syncExtensionItem(_ input: AnyObject) {
         if let attachments = input.attachments
         {
             attachments?.forEach { (item) -> () in
-                self.syncItem(item)
+                self.syncItem(item as AnyObject)
             }
             
         }
     }
     
-    private func syncItem(item: AnyObject) {
+    fileprivate func syncItem(_ item: AnyObject) {
         if  let itemProvider = item as? NSItemProvider,
             let type = itemProvider.registeredTypeIdentifiers[0] as? String
         {
-            itemProvider.loadItemForTypeIdentifier(type, options: nil) { (coding, error) -> Void in
-                if let url = coding as? NSURL {
+            itemProvider.loadItem(forTypeIdentifier: type, options: nil) { (coding, error) -> Void in
+                if let url = coding as? URL {
                     self.syncPathAndType(path: url.absoluteString, type: .Overcast)
                 }
                 
@@ -47,7 +47,7 @@ public class ExtensionDataHandler: NSObject {
         
     }
     
-    private func syncPathAndType(path path: String, type: PodcastType) {
+    fileprivate func syncPathAndType(path: String, type: PodcastType) {
         
         if (type == .Overcast) {
             let context = self.dataController.managedObjectContext
@@ -68,23 +68,23 @@ public class ExtensionDataHandler: NSObject {
 
     }
     
-    func getiTunesURLFromSharedString(str: String) -> NSURL? {
-        var itunesURL: NSURL?
+    func getiTunesURLFromSharedString(_ str: String) -> URL? {
+        var itunesURL: URL?
         let pattern = "(?i)https?://(?:www\\.)?\\S+(?:/|\\b)"
         
         let nsstr = NSString(string: str)
         let all = NSRange(location: 0, length: nsstr.length)
         do {
-            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpressionOptions(rawValue: 0))
+            let regex = try NSRegularExpression(pattern: pattern, options: NSRegularExpression.Options(rawValue: 0))
             
-            regex.enumerateMatchesInString(str, options: NSMatchingOptions(rawValue: 0), range: all) { (result, _, _) -> Void in
+            regex.enumerateMatches(in: str, options: NSRegularExpression.MatchingOptions(rawValue: 0), range: all) { (result, _, _) -> Void in
                 if let res = result {
-                    let path = nsstr.substringWithRange(res.range)
-                    let url = NSURL(string: path)
+                    let path = nsstr.substring(with: res.range)
+                    let url = URL(string: path)
                     if var idStr = url?.lastPathComponent {
-                        let range = idStr.startIndex..<idStr.startIndex.advancedBy(2)
-                        idStr.removeRange(range)
-                        itunesURL = NSURL(string: "https://itunes.apple.com/lookup?id=\(idStr)&entity=podcast")
+                        let range = idStr.startIndex..<idStr.characters.index(idStr.startIndex, offsetBy: 2)
+                        idStr.removeSubrange(range)
+                        itunesURL = URL(string: "https://itunes.apple.com/lookup?id=\(idStr)&entity=podcast")
                     }
                 }
                 

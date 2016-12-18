@@ -14,7 +14,7 @@ class PlayerInterfaceController: WKInterfaceController {
     var player: WKAudioFilePlayer?
     var playerItem: WKAudioFilePlayerItem?
     var isPlaying = false
-    var timer: NSTimer?
+    var timer: Timer?
     
     @IBOutlet weak var timeElapsedLabel: WKInterfaceLabel?
     @IBOutlet weak var nameLabel: WKInterfaceLabel?
@@ -33,29 +33,29 @@ class PlayerInterfaceController: WKInterfaceController {
             }
             
             switch player.status {
-            case .ReadyToPlay:
+            case .readyToPlay:
                 player.play()
                 self.isPlaying = true
                 self.playButton?.setTitle("Pause")
-                self.timer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: "playing:", userInfo: nil, repeats: true)
-            case .Failed:
+                self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(PlayerInterfaceController.playing(_:)), userInfo: nil, repeats: true)
+            case .failed:
                 print("failed")
-            case .Unknown:
+            case .unknown:
                 print("unknown")
             }
         }
     }
     
-    func playing(timer: NSTimer) {
+    func playing(_ timer: Timer) {
         if let playerItem = self.playerItem,
             let label = self.timeElapsedLabel {
                 label.setText("Time: \(playerItem.currentTime)")
                 switch(playerItem.status) {
-                case .ReadyToPlay:
+                case .readyToPlay:
                     print("player item ready to play")
-                case .Failed:
+                case .failed:
                     print("player item failed: \(playerItem.error)")
-                case .Unknown:
+                case .unknown:
                     print("player item status unknown")
                 }
                 
@@ -70,30 +70,28 @@ class PlayerInterfaceController: WKInterfaceController {
         }
     }
 
-    override func awakeWithContext(context: AnyObject?) {
-        super.awakeWithContext(context)
-        let fileManager = NSFileManager.defaultManager()
+    override func awake(withContext context: Any?) {
+        super.awake(withContext: context)
+        let fileManager = FileManager.default
    
-        if let containerURL = fileManager.containerURLForSecurityApplicationGroupIdentifier("group.PodcastWatch")
+        if let containerURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "group.PodcastWatch")
         {
             
-            let fileURL = containerURL.URLByAppendingPathComponent("media.mp3")
+            let fileURL = containerURL.appendingPathComponent("media.mp3")
             let fileCoordinator = NSFileCoordinator()
             
-            fileCoordinator.coordinateReadingItemAtURL(fileURL, options: .WithoutChanges, error: nil, byAccessor: { (url) -> Void in
-                if let path = url.path {
-                    let exists = fileManager.fileExistsAtPath(path)
-                    print("exists: \(exists), path: \(path)")
-                    
-                }
-                let audioAsset = WKAudioFileAsset(URL: url)
+            fileCoordinator.coordinate(readingItemAt: fileURL, options: .withoutChanges, error: nil, byAccessor: { (url) -> Void in
+                let path = url.path
+                let exists = fileManager.fileExists(atPath: path)
+                print("exists: \(exists), path: \(path)")
+                let audioAsset = WKAudioFileAsset(url: url)
                 let playerItem = WKAudioFilePlayerItem(asset: audioAsset)
                 self.playerItem = playerItem
                 self.nameLabel?.setText(audioAsset.title)
                 self.player = WKAudioFilePlayer(playerItem: playerItem)
             })
             
-            NSNotificationCenter.defaultCenter().addObserver(self, selector: "stopTimer", name: WKAudioFilePlayerItemDidPlayToEndTimeNotification, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(PlayerInterfaceController.stopTimer), name: NSNotification.Name.WKAudioFilePlayerItemDidPlayToEndTime, object: nil)
            
         }
         
@@ -109,4 +107,86 @@ class PlayerInterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+}
+
+//
+//  WatchSync.swift
+//  PodcastWatch
+//
+//  Created by Samantha John on 12/26/15.
+//  Copyright © 2015 SamanthaJohn. All rights reserved.
+//
+
+import UIKit
+import WatchConnectivity
+
+class WatchSync: NSObject, WCSessionDelegate {
+    
+    /** Called when the session has completed activation. If session state is WCSessionActivationStateNotActivated there will be an error with more details. */
+    public func session(_ session: WCSession, activationDidCompleteWith activationState: WCSessionActivationState, error: Error?) {
+        
+    }
+    
+    
+    let session: WCSession?
+    
+    override init() {
+        
+        if WCSession.isSupported() {
+            let session = WCSession.default()
+            self.session = session
+        } else {
+            self.session = nil
+        }
+        
+        super.init()
+        
+        self.session?.delegate = self
+        self.session?.activate()
+        
+    }
+    
+    func session(_ session: WCSession, didFinish fileTransfer: WCSessionFileTransfer, error: Error?) {
+        if (error != nil) {
+            print("error: \(error)")
+        } else {
+            print("success")
+        }
+        
+    }
+    
+    func session(_ session: WCSession, didReceive file: WCSessionFile) {
+        let tmpFilePath = file.fileURL.path
+        if let mediaFilePath = self.mediaFilePath {
+            let fileManager = FileManager.default
+            do {
+                try fileManager.copyItem(atPath: tmpFilePath, toPath: mediaFilePath)
+            } catch {
+                print("error: \(error)")
+            }
+        }
+    }
+    
+    lazy var mediaFilePath: String? = {
+        let fileManager = FileManager.default
+        if let containerURL = fileManager.containerURL(forSecurityApplicationGroupIdentifier: "group.PodcastWatch") {
+            return containerURL.appendingPathComponent("media.mp3").path
+        }
+        
+        return nil
+    }()
+    
+    func writeToFile(_ data: Data, metadata: [String: AnyObject]?) {
+        if let filePath = self.mediaFilePath {
+            
+            let fileManager = FileManager.default
+            let success = fileManager.createFile(atPath: filePath, contents: data, attributes: nil)
+            
+            if (success == true) {
+                let url = URL(fileURLWithPath: filePath)
+                let transfer = session?.transferFile(url, metadata: metadata)
+                print("transferring: \(transfer?.isTransferring)")
+            }
+        }
+    }
 }

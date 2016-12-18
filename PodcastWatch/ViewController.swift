@@ -20,11 +20,11 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         super.viewDidLoad()
         self.episodes = self.dataHandler.fetchEpisodes()
         self.view.addSubview(self.tableView)
-        self.tableView.registerClass(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
+        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: self.cellIdentifier)
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "doneDownloading", name: episodesDownloaded, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ViewController.doneDownloading), name: NSNotification.Name(rawValue: episodesDownloaded), object: nil)
         
     }
     
@@ -35,16 +35,16 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
     
     // MARK: - UITableViewDataSoure
     
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.episodes.count
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier) {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier) {
 
             cell.textLabel?.text = self.episodes[indexPath.row].title
 
@@ -53,31 +53,31 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
         }
         
-        return UITableViewCell(style: .Subtitle, reuseIdentifier: cellIdentifier)
+        return UITableViewCell(style: .subtitle, reuseIdentifier: cellIdentifier)
         
     }
     
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let label = UILabel(frame: CGRect.zero)
         label.text = NSLocalizedString("Podcasts", comment: "")
-        label.textAlignment = .Center
+        label.textAlignment = .center
         return label
     }
     
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 100
     }
     
     // MARK: - UITableViewDelegate
-    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let podcast = self.episodes[indexPath.row]
         let downloader = PodcastEpisodeDownloader()
         downloader.watchSync = self.watchSync
-        let cell = tableView.cellForRowAtIndexPath(indexPath)
+        let cell = tableView.cellForRow(at: indexPath)
         cell?.textLabel?.text = "Begin Downloading"
         downloader.downloadEpisodeMp3(podcast) { (progressPercent) -> Void in
             
-            dispatch_async(dispatch_get_main_queue(), {
+            DispatchQueue.main.async(execute: {
                 if (progressPercent == 1) {
                     if let title = podcast.title {
                         cell?.textLabel?.text = "Downloaded \(title)"
@@ -91,7 +91,7 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
 
             
         }
-        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     override func viewDidLayoutSubviews() {
